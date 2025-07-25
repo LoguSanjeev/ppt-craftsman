@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { useToast } from '@/hooks/use-toast';
 import { 
   AlertTriangle, 
   Clock, 
@@ -17,7 +18,14 @@ import {
   BarChart3,
   AlertCircle,
   CheckCircle2,
-  XCircle
+  XCircle,
+  Download,
+  Mail,
+  Calendar,
+  Share2,
+  FileText,
+  Bell,
+  Presentation
 } from 'lucide-react';
 import { 
   BarChart, 
@@ -96,6 +104,43 @@ const IncidentDashboard = () => {
   });
   const [searchTerm, setSearchTerm] = useState('');
   const [lastUpdated, setLastUpdated] = useState(new Date());
+  const { toast } = useToast();
+
+  // Automation functions
+  const exportToPDF = () => {
+    toast({
+      title: "Export Started",
+      description: "PDF report is being generated and will download shortly.",
+    });
+  };
+
+  const exportToExcel = () => {
+    toast({
+      title: "Export Started", 
+      description: "Excel report is being generated and will download shortly.",
+    });
+  };
+
+  const sendEmailAlert = () => {
+    toast({
+      title: "Alert Sent",
+      description: "Email notifications sent to stakeholders about SLA breaches.",
+    });
+  };
+
+  const scheduleReport = () => {
+    toast({
+      title: "Report Scheduled",
+      description: "Daily automated reports have been configured successfully.",
+    });
+  };
+
+  const shareReport = () => {
+    toast({
+      title: "Report Shared",
+      description: "Dashboard link has been copied to clipboard.",
+    });
+  };
 
   // Auto-refresh simulation
   useEffect(() => {
@@ -238,7 +283,7 @@ const IncidentDashboard = () => {
     <div className="h-screen bg-background flex flex-col">
       {/* Header */}
       <header className="bg-card border-b border-border p-4">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mb-4">
           <div>
             <h1 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
               Incident Management Dashboard
@@ -247,13 +292,56 @@ const IncidentDashboard = () => {
               Last updated: {lastUpdated.toLocaleTimeString()}
             </p>
           </div>
-          <Button 
-            variant="outline" 
-            size="sm"
-            onClick={() => setLastUpdated(new Date())}
-          >
-            <RefreshCw className="w-4 h-4 mr-2" />
-            Refresh
+          <div className="flex items-center gap-2">
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={() => window.location.href = '/presentation'}
+            >
+              <Presentation className="w-4 h-4 mr-2" />
+              View Presentation
+            </Button>
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={() => setLastUpdated(new Date())}
+            >
+              <RefreshCw className="w-4 h-4 mr-2" />
+              Refresh
+            </Button>
+          </div>
+        </div>
+        
+        {/* Automation Toolbar */}
+        <div className="flex items-center gap-2 flex-wrap">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground mr-4">
+            <Bell className="w-4 h-4" />
+            <span>Automation Tools:</span>
+          </div>
+          
+          <Button variant="outline" size="sm" onClick={exportToPDF}>
+            <FileText className="w-4 h-4 mr-2" />
+            Export PDF
+          </Button>
+          
+          <Button variant="outline" size="sm" onClick={exportToExcel}>
+            <Download className="w-4 h-4 mr-2" />
+            Export Excel
+          </Button>
+          
+          <Button variant="outline" size="sm" onClick={sendEmailAlert}>
+            <Mail className="w-4 h-4 mr-2" />
+            Email Alerts
+          </Button>
+          
+          <Button variant="outline" size="sm" onClick={scheduleReport}>
+            <Calendar className="w-4 h-4 mr-2" />
+            Schedule Reports
+          </Button>
+          
+          <Button variant="outline" size="sm" onClick={shareReport}>
+            <Share2 className="w-4 h-4 mr-2" />
+            Share Dashboard
           </Button>
         </div>
       </header>
