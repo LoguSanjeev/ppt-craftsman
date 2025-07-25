@@ -56,7 +56,7 @@ const InterviewPresentation = () => {
 
   const slides = [
     {
-      title: "Data Analyst Interview Portfolio",
+      title: "Professional Portfolio",
       subtitle: "Incident Management Dashboard & Automation",
       content: (
         <div className="text-center space-y-8">
@@ -66,8 +66,7 @@ const InterviewPresentation = () => {
           <div>
             <h2 className="text-3xl font-bold mb-4">Interactive Data Visualization</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Demonstrating expertise in creating beautiful, functional dashboards with real-time automation 
-              for the Dubai Data Analyst position.
+              Demonstrating expertise in creating beautiful, functional dashboards with real-time automation.
             </p>
           </div>
           <div className="grid grid-cols-3 gap-6 max-w-4xl mx-auto">
@@ -496,8 +495,8 @@ const InterviewPresentation = () => {
       )
     },
     {
-      title: "Why This Matters for Dubai Role",
-      subtitle: "Alignment with Job Requirements",
+      title: "Why This Matters",
+      subtitle: "Skills & Capabilities Demonstration",
       content: (
         <div className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -605,17 +604,6 @@ const InterviewPresentation = () => {
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-card">
-            <CardContent className="p-6 text-center">
-              <h3 className="text-xl font-bold mb-4">Perfect Fit for Dubai Role</h3>
-              <p className="text-muted-foreground max-w-3xl mx-auto">
-                This project demonstrates exactly the skills required: creating attractive, interactive presentations 
-                with comprehensive reporting capabilities and extensive automation. The dashboard showcases advanced 
-                data visualization techniques, real-time analytics, and workflow automation - all essential for 
-                the Dubai Data Analyst position.
-              </p>
-            </CardContent>
-          </Card>
         </div>
       )
     }
